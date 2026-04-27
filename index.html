@@ -1,216 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate Verification System</title>
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 10px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate Verification System</title>
 
-        /* HEADER SECTION */
-        .header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-            background-color: white;
-            border-bottom: 3px solid #228B22;
-        }
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 10px;
+}
 
-        .logo-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+/* HEADER */
+.header {
+    background: white;
+    border-bottom: 3px solid #228B22;
+    padding: 15px 10px;
+}
 
-        .logo.small {
-            width: 90px;
-            height: auto;
-        }
+.logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    max-width: 1100px;
+    margin: auto;
+}
 
-        .text-block {
-            text-align: center;
-        }
+.logo-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
 
-        h3.university-name {
-            font-family: "Old English Text MT", serif;
-            font-size: 40px;
-            color: #20650a;
-            margin: 0;
-        }
+.logo.small {
+    width: 80px;
+    height: auto;
+}
 
-        h2.office-vp {
-            font-family: "Times New Roman", serif;
-            font-size: 20px;
-            color: #20650a;
-            margin: 2px 0;
-            text-transform: uppercase;
-        }
+.text-block {
+    text-align: center;
+    flex: 1;
+}
 
-        h1.office-extension {
-            font-family: "Times New Roman", serif;
-            font-size: 20px;
-            color: #20650a;
-            margin: 5px 0;
-            text-transform: uppercase;
-        }
+h3.university-name {
+    font-family: "Old English Text MT", serif;
+    font-size: 32px;
+    margin: 0;
+    color: #20650a;
+}
 
-        .portal-title {
-            font-family: "Times New Roman", serif;
-            font-size: 24px;
-            font-weight: bold;
-            color: #082103;
-            display: block;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 2px solid #082103;
-        }
+h2.office-vp,
+h1.office-extension {
+    font-family: "Times New Roman", serif;
+    font-size: 16px;
+    margin: 2px 0;
+    color: #20650a;
+    text-transform: uppercase;
+}
 
-        /* VERIFICATION BOX */
-        .container {
-            background: white;
-            width: 90%;
-            max-width: 450px;
-            margin: 30px auto;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
-            text-align: center;
-        }
+.portal-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #082103;
+    display: block;
+    margin-top: 8px;
+    border-top: 2px solid #082103;
+    padding-top: 5px;
+}
 
-        .container h4 {
-            font-family: "Times New Roman", serif;
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
+/* CONTAINER */
+.container {
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
 
-        input {
-            padding: 12px;
-            width: 100%;
-            box-sizing: border-box;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
 
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #228B22;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+button {
+    width: 100%;
+    padding: 12px;
+    background: #228B22;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        button:hover {
-            background-color: #1a6b1a;
-        }
+button:hover {
+    background: #1a6b1a;
+}
 
-        #result {
-            margin-top: 20px;
-            padding: 10px;
-            text-align: center;
-            min-height: 40px;
-        }
+#result {
+    margin-top: 15px;
+}
 
-        .valid {
-            color: #155724;
-            background-color: #d4edda;
-            border: 1px solid #c3e6cb;
-            padding: 10px;
-            font-weight: bold;
-            border-radius: 5px;
-        }
+.valid {
+    background: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
 
-        .invalid {
-            color: #721c24;
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-            padding: 10px;
-            font-weight: bold;
-            border-radius: 5px;
-        }
+.invalid {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
 
-        .cert-details {
-            margin-top: 10px;
-            text-align: left;
-        }
+.cert-details {
+    text-align: left;
+    margin-top: 10px;
+}
 
-        img {
-            max-width: 100%;
-        }
+/* FOOTER */
+.footer-note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+}
 
-        /* MOBILE IMPROVEMENTS */
-        @media (max-width: 768px) {
-            .logo.small {
-                width: 70px;
-            }
+/* MOBILE FIX */
+@media (max-width: 768px) {
+    .logo-row {
+        flex-direction: column;
+        text-align: center;
+    }
 
-            h3.university-name {
-                font-size: 26px;
-            }
+    .logo-group {
+        justify-content: center;
+    }
 
-            h2.office-vp,
-            h1.office-extension {
-                font-size: 14px;
-            }
+    .logo.small {
+        width: 60px;
+    }
 
-            .portal-title {
-                font-size: 18px;
-            }
-        }
-    </style>
+    h3.university-name {
+        font-size: 22px;
+    }
+
+    h2.office-vp,
+    h1.office-extension {
+        font-size: 12px;
+    }
+
+    .portal-title {
+        font-size: 14px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <div class="header">
-        <div class="logo-row">
+<div class="header">
+    <div class="logo-row">
+
+        <div class="logo-group">
             <img src="images/bsu-logo.png" class="logo small">
             <img src="images/ovpre-logo.png" class="logo small">
+        </div>
 
-            <div class="text-block">
-                <h3 class="university-name">Benguet State University</h3>
-                <h2 class="office-vp">Office of the Vice President for Research and Extension</h2>
-                <h1 class="office-extension">Office of Extension Services</h1>
-                <span class="portal-title">CERTIFICATE VERIFICATION PORTAL</span>
-            </div>
+        <div class="text-block">
+            <h3 class="university-name">Benguet State University</h3>
+            <h2 class="office-vp">Office of the Vice President for Research and Extension</h2>
+            <h1 class="office-extension">Office of Extension Services</h1>
+            <span class="portal-title">CERTIFICATE VERIFICATION PORTAL</span>
+        </div>
 
+        <div class="logo-group">
             <img src="images/oes-logo.png" class="logo small">
         </div>
+
     </div>
+</div>
 
-    <div class="container">
-        <h4>Verify Certificate Authenticity</h4>
-        <input type="text" id="code" placeholder="Enter Certificate Code (e.g., GOV-001)">
-        <button onclick="verify()">Verify Certificate</button>
+<div class="container">
+    <h4>Verify Certificate Authenticity</h4>
+    <input type="text" id="code" placeholder="Enter Certificate Code (e.g., GOV-001)">
+    <button onclick="verify()">Verify Certificate</button>
 
-        <div id="result"></div>
+    <div id="result"></div>
 
-        <p style="margin-top:20px; font-size:13px; color:#666; line-height:1.5;">
-            This system is for official verification of certificates issued by the Office of Extension Services.<br>
-            For concerns, contact: <strong>oes.office@bsu.edu.ph</strong>
-        </p>
+    <div class="footer-note">
+        This system is for official verification of certificates issued by the Office of Extension Services.<br>
+        Contact: <strong>oes.office@bsu.edu.ph</strong>
     </div>
+</div>
 
 <script>
 async function verify() {
     const input = document.getElementById("code").value.trim();
     const resultDiv = document.getElementById("result");
 
-    if (input === "") {
-        resultDiv.innerHTML = `<p class="invalid">Please enter a code.</p>`;
+    if (!input) {
+        resultDiv.innerHTML = `<div class="invalid">Please enter a code.</div>`;
         return;
     }
 
@@ -226,15 +232,15 @@ async function verify() {
                 <div class="cert-details">
                     <p><strong>Name:</strong> ${found.name}</p>
                     <p><strong>Training:</strong> ${found.training}</p>
-                    <p><strong>Date Issued:</strong> ${found.date}</p>
+                    <p><strong>Date:</strong> ${found.date}</p>
                 </div>
             `;
         } else {
-            resultDiv.innerHTML = `<div class="invalid">✖ INVALID CERTIFICATE<br><small>Record not found.</small></div>`;
+            resultDiv.innerHTML = `<div class="invalid">✖ INVALID CERTIFICATE</div>`;
         }
 
     } catch (error) {
-        resultDiv.innerHTML = `<div class="invalid">⚠ Error connecting to database</div>`;
+        resultDiv.innerHTML = `<div class="invalid">Error connecting to database</div>`;
     }
 }
 
