@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
-            padding: 0;
+            padding: 10px;
         }
 
         /* HEADER SECTION */
@@ -18,7 +18,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
             background-color: white;
             border-bottom: 3px solid #228B22;
         }
@@ -27,66 +27,60 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 30px;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         .logo.small {
-            width: 100px;
+            width: 90px;
             height: auto;
-            object-fit: contain;
         }
 
         .text-block {
             text-align: center;
         }
 
-        /* 1. BENGUET STATE UNIVERSITY - Old English */
         h3.university-name {
-            font-family: "Old English Text MT", "Engravers English", serif;
-            font-size: 48px;
+            font-family: "Old English Text MT", serif;
+            font-size: 40px;
             color: #20650a;
             margin: 0;
-            font-weight: normal;
         }
 
-        /* 2. OFFICE OF THE VICE PRESIDENT... - Times New Roman (Smallest) */
         h2.office-vp {
-            font-family: "Times New Roman", Times, serif;
-            font-size: 24px;
+            font-family: "Times New Roman", serif;
+            font-size: 20px;
             color: #20650a;
             margin: 2px 0;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* 3. OFFICE OF EXTENSION SERVICES - Times New Roman & ALL CAPS */
         h1.office-extension {
-            font-family: "Times New Roman", Times, serif;
-            font-size: 24px;
+            font-family: "Times New Roman", serif;
+            font-size: 20px;
             color: #20650a;
             margin: 5px 0;
-            text-transform: uppercase; /* THIS MAKES IT ALL CAPS */
+            text-transform: uppercase;
         }
 
-        /* 4. PORTAL TITLE - Bold, Underlined style */
         .portal-title {
-            font-family: "Times New Roman", Times, serif;
-            font-size: 30px;
+            font-family: "Times New Roman", serif;
+            font-size: 24px;
             font-weight: bold;
             color: #082103;
             display: block;
             margin-top: 10px;
             padding-top: 10px;
             border-top: 2px solid #082103;
-            letter-spacing: 2px;
         }
 
         /* VERIFICATION BOX */
         .container {
             background: white;
-            width: 450px;
-            margin: 50px auto;
-            padding: 30px;
+            width: 90%;
+            max-width: 450px;
+            margin: 30px auto;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
             text-align: center;
@@ -94,14 +88,14 @@
 
         .container h4 {
             font-family: "Times New Roman", serif;
-            font-size: 22px;
-            color: #333;
-            margin-bottom: 20px;
+            font-size: 20px;
+            margin-bottom: 15px;
         }
 
         input {
             padding: 12px;
-            width: 80%;
+            width: 100%;
+            box-sizing: border-box;
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -109,15 +103,15 @@
         }
 
         button {
-            padding: 12px 25px;
+            width: 100%;
+            padding: 12px;
             background-color: #228B22;
             color: white;
             border: none;
             border-radius: 5px;
-            cursor: pointer;
             font-size: 16px;
             font-weight: bold;
-            transition: background 0.3s;
+            cursor: pointer;
         }
 
         button:hover {
@@ -125,11 +119,10 @@
         }
 
         #result {
-            margin-top: 25px;
-            padding: 15px;
-            border-radius: 5px;
-            text-align: left;
-            min-height: 50px;
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+            min-height: 40px;
         }
 
         .valid {
@@ -138,7 +131,6 @@
             border: 1px solid #c3e6cb;
             padding: 10px;
             font-weight: bold;
-            text-align: center;
             border-radius: 5px;
         }
 
@@ -148,25 +140,45 @@
             border: 1px solid #f5c6cb;
             padding: 10px;
             font-weight: bold;
-            text-align: center;
             border-radius: 5px;
         }
 
         .cert-details {
             margin-top: 10px;
-            line-height: 1.6;
-            color: #333;
+            text-align: left;
         }
 
-        img { max-width: 100%; }
+        img {
+            max-width: 100%;
+        }
+
+        /* MOBILE IMPROVEMENTS */
+        @media (max-width: 768px) {
+            .logo.small {
+                width: 70px;
+            }
+
+            h3.university-name {
+                font-size: 26px;
+            }
+
+            h2.office-vp,
+            h1.office-extension {
+                font-size: 14px;
+            }
+
+            .portal-title {
+                font-size: 18px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="header">
         <div class="logo-row">
-            <img src="images/bsu-logo.png" class="logo small" alt="BSU Logo">
-            <img src="images/ovpre-logo.png" class="logo small" alt="OVPRE Logo">
+            <img src="images/bsu-logo.png" class="logo small">
+            <img src="images/ovpre-logo.png" class="logo small">
 
             <div class="text-block">
                 <h3 class="university-name">Benguet State University</h3>
@@ -175,22 +187,21 @@
                 <span class="portal-title">CERTIFICATE VERIFICATION PORTAL</span>
             </div>
 
-            <img src="images/oes-logo.png" class="logo small" alt="OES Logo">
+            <img src="images/oes-logo.png" class="logo small">
         </div>
     </div>
 
     <div class="container">
         <h4>Verify Certificate Authenticity</h4>
         <input type="text" id="code" placeholder="Enter Certificate Code (e.g., GOV-001)">
-        <br>
         <button onclick="verify()">Verify Certificate</button>
 
         <div id="result"></div>
 
-         <p style="margin-top:20px; font-size:14px; color:#555;">
-        This system is for official verification of certificates issued by the Office of Extension Services.
-        For concerns, please contact oes.office@bsu.edu.ph.
-    </p>
+        <p style="margin-top:20px; font-size:13px; color:#666; line-height:1.5;">
+            This system is for official verification of certificates issued by the Office of Extension Services.<br>
+            For concerns, contact: <strong>oes.office@bsu.edu.ph</strong>
+        </p>
     </div>
 
 <script>
@@ -227,8 +238,6 @@ async function verify() {
     }
 }
 
-
-// ✅ ADD THIS BELOW YOUR verify() FUNCTION
 window.onload = function () {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
