@@ -3,205 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate Verification System</title>
+    <title>BSU-OES Certificate Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            box-sizing: border-box; /* Prevents elements from overflowing the screen width */
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; }
 
         /* HEADER */
-        .header {
-            background: white;
-            border-bottom: 4px solid #228B22;
-            padding: 20px 15px;
-            width: 100%;
-        }
+        .header { background: white; border-bottom: 4px solid #228B22; padding: 15px; }
+        .header-content { display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto; gap: 10px; }
+        
+        .logo-side { display: flex; gap: 8px; align-items: center; }
+        .logo { width: clamp(50px, 8vw, 80px); height: auto; }
+        
+        .text-block { text-align: center; flex: 1; }
+        .university-name { font-family: 'UnifrakturMaguntia', serif; font-size: clamp(20px, 4vw, 36px); margin: 0; color: #20650a; }
+        .sub-text { font-family: "Times New Roman", serif; font-size: clamp(10px, 2vw, 14px); color: #20650a; text-transform: uppercase; margin: 2px 0; font-weight: bold; }
+        .portal-label { font-size: 13px; font-weight: 800; border-top: 2px solid #082103; margin-top: 8px; padding-top: 5px; display: inline-block; letter-spacing: 1px; }
 
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1000px;
-            margin: 0 auto;
-            gap: 20px;
-        }
+        /* CONTAINER */
+        .container { background: white; width: 92%; max-width: 450px; margin: 30px auto; padding: 30px 20px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); text-align: center; }
+        input { width: 100%; padding: 14px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; text-align: center; }
+        .btn-verify { width: 100%; padding: 14px; background: #228B22; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        .btn-verify:hover { background: #1a6b1a; }
+        
+        /* RESULT BOXES */
+        #result { margin-top: 20px; }
+        .status { padding: 12px; border-radius: 8px; font-weight: bold; margin-bottom: 15px; }
+        .valid { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .invalid { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        
+        .details { text-align: left; background: #fdfdfd; padding: 15px; border-radius: 8px; border: 1px solid #eee; font-size: 14px; line-height: 1.6; }
+        .btn-download { display: block; margin-top: 15px; padding: 12px; background: #007bff; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; }
+        .btn-download:hover { background: #0056b3; }
 
-        .logo-group {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
-        .logo {
-            width: 70px;
-            height: auto;
-            object-fit: contain;
-        }
-
-        .text-block {
-            text-align: center;
-            flex-grow: 1;
-        }
-
-        .university-name {
-            font-family: "Old English Text MT", serif;
-            font-size: clamp(22px, 5vw, 32px);
-            margin: 0;
-            color: #20650a;
-            line-height: 1.1;
-        }
-
-        .office-vp, .office-extension {
-            font-family: "Times New Roman", serif;
-            font-size: clamp(12px, 3vw, 16px);
-            margin: 4px 0;
-            color: #20650a;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .portal-title {
-            font-size: clamp(14px, 3.5vw, 18px);
-            font-weight: bold;
-            color: #082103;
-            display: inline-block;
-            margin-top: 10px;
-            border-top: 2px solid #082103;
-            padding-top: 5px;
-            width: 100%;
-        }
-
-        /* MAIN CONTAINER */
-        .container {
-            background: white;
-            width: 92%;
-            max-width: 450px;
-            margin: 40px auto;
-            padding: 30px 20px;
-            border-radius: 12px;
-            box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        h4 {
-            margin-top: 0;
-            color: #333;
-            font-size: 1.2rem;
-        }
-
-        input {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #228B22;
-        }
-
-        button {
-            width: 100%;
-            padding: 14px;
-            background: #228B22;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background: #1a6b1a;
-        }
-
-        #result {
-            margin-top: 20px;
-            min-height: 50px;
-        }
-
-        .valid {
-            background: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 8px;
-            font-weight: bold;
-            border-left: 5px solid #28a745;
-        }
-
-        .invalid {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 8px;
-            font-weight: bold;
-            border-left: 5px solid #dc3545;
-        }
-
-        .cert-details {
-            text-align: left;
-            margin-top: 15px;
-            font-size: 14px;
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #eee;
-        }
-
-        .cert-details p {
-            margin: 8px 0;
-        }
-
-        .footer-note {
-            margin-top: 30px;
-            font-size: 12px;
-            color: #777;
-            line-height: 1.6;
-        }
-
-        /* MOBILE RESPONSIVE LOGIC */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .logo-group {
-                justify-content: center;
-                width: 100%;
-            }
-
-            /* Moves the single OES logo to the top row with the other logos on mobile */
-            .header-content > .logo-group:last-child {
-                order: -1; 
-                margin-bottom: -10px;
-            }
-
-            .logo {
-                width: 55px;
-            }
-
-            .container {
-                margin: 20px auto;
-            }
+        /* MOBILE FIX */
+        @media (max-width: 650px) {
+            .header-content { flex-direction: column; }
+            .logo-side { justify-content: center; width: 100%; }
+            .logo-oes { order: -1; margin-bottom: -10px; } /* Moves OES logo to top row area on mobile */
         }
     </style>
 </head>
@@ -209,97 +50,69 @@
 
 <div class="header">
     <div class="header-content">
-        <div class="logo-group">
-            <img src="images/bsu-logo.png" class="logo" alt="BSU Logo">
-            <img src="images/ovpre-logo.png" class="logo" alt="OVPRE Logo">
+        <div class="logo-side">
+            <img src="images/bsu-logo.png" class="logo" alt="BSU">
+            <img src="images/ovpre-logo.png" class="logo" alt="OVPRE">
         </div>
-
         <div class="text-block">
             <h3 class="university-name">Benguet State University</h3>
-            <h2 class="office-vp">Office of the Vice President for Research and Extension</h2>
-            <h1 class="office-extension">Office of Extension Services</h1>
-            <span class="portal-title">CERTIFICATE VERIFICATION PORTAL</span>
+            <p class="sub-text">Office of the VP for Research and Extension</p>
+            <p class="sub-text">Office of Extension Services</p>
+            <span class="portal-label">CERTIFICATE VERIFICATION PORTAL</span>
         </div>
-
-        <div class="logo-group">
-            <img src="images/oes-logo.png" class="logo" alt="OES Logo">
+        <div class="logo-side logo-oes">
+            <img src="images/oes-logo.png" class="logo" alt="OES">
         </div>
     </div>
 </div>
 
 <div class="container">
-    <h4>Verify Certificate Authenticity</h4>
-    <input type="text" id="code" placeholder="Enter Certificate Code (e.g., GOV-001)">
-    <button onclick="verify()">Verify Certificate</button>
-
+    <h4>Enter Certificate Code</h4>
+    <input type="text" id="code" placeholder="Example: OES-2024-001" autocomplete="off">
+    <button class="btn-verify" onclick="verify()">Verify Certificate</button>
     <div id="result"></div>
-
-    <div class="footer-note">
-        This system is for official verification of certificates issued by the Office of Extension Services.<br>
-        Questions? Contact: <strong>oes.office@bsu.edu.ph</strong>
-    </div>
 </div>
 
 <script>
 async function verify() {
-    const input = document.getElementById("code").value.trim().toUpperCase();
+    const inputCode = document.getElementById("code").value.trim().toUpperCase();
     const resultDiv = document.getElementById("result");
-    const button = document.querySelector("button");
-
-    if (!input) {
-        resultDiv.innerHTML = `<div class="invalid">Please enter a code.</div>`;
+    
+    if (!inputCode) {
+        resultDiv.innerHTML = `<div class="status invalid">Please enter a code.</div>`;
         return;
     }
 
-    // Visual feedback while loading
-    button.disabled = true;
-    button.innerText = "Verifying...";
-    resultDiv.innerHTML = "Searching database...";
+    resultDiv.innerHTML = "Processing...";
 
     try {
         const response = await fetch("https://opensheet.elk.sh/1yWJfd9Exp95Pjh24MypkvUjCGgh9AEcW6RRt-EAssSk/Sheet1");
         const data = await response.json();
-
-        // Improved search: also trims whitespace from sheet data to avoid mismatches
-        const found = data.find(c => 
-            c.cert_code && c.cert_code.toString().trim().toUpperCase() === input
-        );
+        
+        const found = data.find(c => c.cert_code && c.cert_code.toString().trim().toUpperCase() === inputCode);
 
         if (found) {
+            // "file_url" is the header for Column F
+            let downloadBtn = found.file_url ? 
+                `<a href="${found.file_url}" target="_blank" class="btn-download">Download Official PDF</a>` : 
+                `<p style="font-size:12px; color:gray;">(Digital copy not yet available)</p>`;
+            
             resultDiv.innerHTML = `
-                <div class="valid">✔ VALID CERTIFICATE</div>
-                <div class="cert-details">
-                    <p><strong>Name:</strong> ${found.name}</p>
-                    <p><strong>Training:</strong> ${found.training}</p>
+                <div class="status valid">✔ VERIFIED AUTHENTIC</div>
+                <div class="details">
+                    <p><strong>Issued To:</strong> ${found.name}</p>
+                    <p><strong>Program:</strong> ${found.training}</p>
                     <p><strong>Date:</strong> ${found.date}</p>
                 </div>
+                ${downloadBtn}
             `;
         } else {
-            resultDiv.innerHTML = `
-                <div class="invalid">
-                    ✖ INVALID CERTIFICATE<br>
-                    <small style="font-weight:normal;">No record found for "${input}"</small>
-                </div>`;
+            resultDiv.innerHTML = `<div class="status invalid">✖ RECORD NOT FOUND</div>`;
         }
-
-    } catch (error) {
-        resultDiv.innerHTML = `<div class="invalid">Error connecting to database. Please check your internet connection.</div>`;
-    } finally {
-        button.disabled = false;
-        button.innerText = "Verify Certificate";
+    } catch (e) {
+        resultDiv.innerHTML = `<div class="status invalid">Server Error. Please try again later.</div>`;
     }
 }
-
-// Auto-verify if code is in the URL
-window.onload = function () {
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get("code");
-
-    if (code) {
-        document.getElementById("code").value = code;
-        verify();
-    }
-};
 </script>
 
 </body>
